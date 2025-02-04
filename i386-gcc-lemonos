@@ -37,7 +37,7 @@ TMP="$(mktemp)"
 rm $TMP
 TMP="$TMP.o"
 
-gcc $CCFLAGS $ARGS "$@" -c -o $TMP
+gcc $CCFLAGS ${ARGS[@]} "$@" -c -o $TMP
 
 if [[ ! -f $TMP ]]; then
 	exit
