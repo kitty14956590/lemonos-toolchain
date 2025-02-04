@@ -1,0 +1,17 @@
+*.bin
+*.iso
+*.o
+*.elf
+*.log
+*.py
+linked-lists/
+linked-lists/*
+lemonos-libc/
+lemonos-libc/*
+.vscode/*
+.vscode/
+local/
+*.vsix
+*.json
+.git
+*.code-workspace

@@ -1,0 +1,31 @@
+#!/usr/bin/bash
+
+# i got this is from valve lmao
+ROOT=$(cd "${0%/*}" && echo $PWD)
+LIBROOT="$(realpath ${ROOT}/../lib/i386-lemonos)"
+
+LDFLAGS="-m elf_i386 --no-dynamic-linker -pie"
+LINK="1"
+
+ARGS=( )
+
+OUTPUT="a.out"
+while test $# -gt 0; do
+	case "$1" in
+		-o)
+			OUTPUT="$2"
+			shift
+			;;
+		*)
+			ARGS+=("$1")
+			;;
+	esac
+	shift
+done
+
+if [[ "${ARGS[@]}" == "" ]]; then
+	ld $CCFLAGS $ARGS
+	exit
+fi
+
+ld $LDFLAGS -T ${LIBROOT}/link.ld $ARGS ${LIBROOT}/linked.o ${LIBROOT}/libc.a -o $OUTPUT
