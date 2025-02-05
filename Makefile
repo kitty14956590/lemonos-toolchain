@@ -30,7 +30,7 @@ install: $(LIBC_PATH)/libc.a $(LIBC_PATH)/include/ $(LINKED_PATH)/linked.o
 	install -d $(DESTDIR)$(PREFIX)/lib/i386-lemonos/
 	install -d $(DESTDIR)$(PREFIX)/bin/
 
-	install -m 65 $(LIBC_PATH)/libc.a $(DESTDIR)$(PREFIX)/lib/i386-lemonos/
+	install -m 655 $(LIBC_PATH)/libc.a $(DESTDIR)$(PREFIX)/lib/i386-lemonos/
 	install -m 655 $(LIBC_PATH)/link.ld $(DESTDIR)$(PREFIX)/lib/i386-lemonos/
 	cp -r $(LIBC_PATH)/include/ $(DESTDIR)$(PREFIX)/lib/i386-lemonos/
 	chmod 775 $(DESTDIR)$(PREFIX)/lib/i386-lemonos/include/ -R
