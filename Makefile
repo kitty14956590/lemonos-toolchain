@@ -8,12 +8,15 @@ LINKED_PATH := linked-lists
 
 default: depends
 
+clean:
+	rm -rf $(LIBC_PATH) $(LINKED_PATH)
+
 depends:
-	if [ ! -d "./lemonos-libc" ]; then \
-		git clone https://github.com/kitty14956590/lemonos-libc; \
-	fi
 	if [ ! -d "./linked-lists" ]; then \
 		git clone https://github.com/kitty14956590/linked-lists; \
+	fi
+	if [ ! -d "./lemonos-libc" ]; then \
+		git clone https://github.com/kitty14956590/lemonos-libc; \
 	fi
 
 	cd linked-lists; \
