@@ -44,3 +44,6 @@ install: $(LIBC_PATH)/libc.a $(LIBC_PATH)/include/ $(LINKED_PATH)/linked.o
 
 	install -m 775 i386-gcc-lemonos $(DESTDIR)$(PREFIX)/bin/
 	install -m 775 i386-ld-lemonos $(DESTDIR)$(PREFIX)/bin/
+
+uninstall:
+	rm -rf /usr/local/bin/i386-*-lemonos /usr/local/lib/i386-lemonos
