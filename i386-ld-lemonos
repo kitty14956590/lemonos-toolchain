@@ -4,7 +4,7 @@
 ROOT=$(cd "${0%/*}" && echo $PWD)
 LIBROOT="$(realpath ${ROOT}/../lib/i386-lemonos)"
 
-LDFLAGS="-m elf_i386 --no-dynamic-linker -pie"
+LDFLAGS="-z noexecstack -m elf_i386 --no-dynamic-linker -pie"
 LINK="1"
 
 ARGS=( )
@@ -22,6 +22,11 @@ while test $# -gt 0; do
 	esac
 	shift
 done
+
+IS_MODERN_LD="$(ld --help | grep \\--no-warn-rwx-segments)"
+if [ "$IS_MODERN_LD" != "" ]; then
+	ARGS+=("--no-warn-rwx-segments")
+fi
 
 if [[ "${ARGS[@]}" == "" ]]; then
 	ld $CCFLAGS $ARGS

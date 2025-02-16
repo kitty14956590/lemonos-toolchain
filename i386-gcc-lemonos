@@ -5,7 +5,6 @@ ROOT=$(cd "${0%/*}" && echo $PWD)
 LIBROOT="$(realpath ${ROOT}/../lib/i386-lemonos)"
 
 CCFLAGS="-fno-stack-protector -fPIE -mno-avx -mhard-float -static -m32 -fno-builtin -fno-builtin-function -fomit-frame-pointer -falign-functions=16 -nostdlib -nostartfiles -ffreestanding -nostdinc -funsigned-char -I${LIBROOT}/include -I${LIBROOT}/inked_include"
-LDFLAGS="-m elf_i386 --no-dynamic-linker -pie"
 LINK="1"
 
 ARGS=( )
@@ -44,7 +43,7 @@ if [[ ! -f $TMP ]]; then
 fi
 
 if [[ "$LINK" == "1" ]]; then
-	ld $LDFLAGS -T ${LIBROOT}/link.ld $TMP ${LIBROOT}/linked.o ${LIBROOT}/libc.a -o $OUTPUT
+	i386-ld-lemonos $TMP -o $OUTPUT
 else
 	mv $TMP $OUTPUT
 fi
