@@ -25,11 +25,11 @@ done
 
 IS_MODERN_LD="$(ld --help | grep \\--no-warn-rwx-segments)"
 if [ "$IS_MODERN_LD" != "" ]; then
-	ARGS+=("--no-warn-rwx-segments")
+	LDFLAGS="--no-warn-rwx-segments -z noexecstack -m elf_i386 --no-dynamic-linker -pie"
 fi
 
 if [[ "${ARGS[@]}" == "" ]]; then
-	ld $CCFLAGS $ARGS
+	ld $LDFLAGS $ARGS
 	exit
 fi
 
